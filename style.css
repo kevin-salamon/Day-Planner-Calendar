@@ -1,0 +1,44 @@
+.timeslot {
+    font-size: 20px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.timeslot-top {
+    border-top: 4px solid black;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+}
+
+.timeslot-bottom {
+    border-bottom: 4px solid black;
+    border-top: 2px solid black;
+    font-size: 20px;
+}
+
+.plan-slot {
+    border-top: 1px solid white;
+    border-left: 1px solid grey;
+    border-right: 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: lightgrey;
+}
+
+.style-jumbo {
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+}
+
+.lock-slot {
+    border-top: 0.5px ridge white;
+    border-bottom: 0.5px ridge white;
+}
+
+.row-height {
+    height: 75px;
+}
+
+.text-9-am {
+    background-color: lightgrey;
+}
