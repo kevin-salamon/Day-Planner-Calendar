@@ -1,5 +1,5 @@
 textarea {
-    background-color: lightgrey;
+    background-color: transparent;
     width: 100%;
     position: relative;
     top: 10%;
@@ -64,4 +64,28 @@ textarea {
 
 .lock-slot:active {
     color: black;
+}
+
+.past {
+    border-top: 1px solid white;
+    border-left: 1px solid grey;
+    border-right: 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: lightgrey;
+}
+
+.present {
+    border-top: 1px solid white;
+    border-left: 1px solid grey;
+    border-right: 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: red;
+}
+
+.future {
+    border-top: 1px solid white;
+    border-left: 1px solid grey;
+    border-right: 1px solid black;
+    border-bottom: 1px solid white;
+    background-color: green;
 }

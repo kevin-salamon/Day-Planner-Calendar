@@ -15,68 +15,69 @@
         <p class="lead">Using the interface below, you can schedule your workday and save any helpful reminders you may need. Afterwards, you can click the 'lock' button to save the information to your local memory.</p>
         <hr class="my-4">
         <p>The calendar will use helpful color coding to alert you to events. Click on any slot below and start typing!</p>
+        <p id="header-time"></p>
       </div><br>
 
     <div class="container">
         <div class="row row-height">
             <div class="col-sm-1 timeslot-top">9 AM</div>
-            <div class="col-sm-10 plan-slot color-9-am">
+            <div class="col-sm-10 plan-slot color-9-am" value="9">
                 <textarea rows="2" cols="80" id="plan-9-am"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-9-am">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">10 AM</div>
-            <div class="col-sm-10 plan-slot color-10am">
+            <div class="col-sm-10 plan-slot color-10-am" value="10">
                 <textarea rows="2" cols="80" id="plan-10-am"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-10-am">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">11 AM</div>
-            <div class="col-sm-10 plan-slot color-11-am">
+            <div class="col-sm-10 plan-slot color-11-am" value="11">
                 <textarea rows="2" cols="80" id="plan-11-am"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-11-am">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">12 PM</div>
-            <div class="col-sm-10 plan-slot color-12-pm">
+            <div class="col-sm-10 plan-slot color-12-pm" value="12">
                 <textarea rows="2" cols="80" id="plan-12-pm"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-12-pm">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">1 PM</div>
-            <div class="col-sm-10 plan-slot color-1-pm">
+            <div class="col-sm-10 plan-slot color-1-pm" value="13">
                 <textarea rows="2" cols="80" id="plan-1-pm"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-1-pm">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">2 PM</div>
-            <div class="col-sm-10 plan-slot color-2-pm">
+            <div class="col-sm-10 plan-slot color-2-pm" value="14">
                 <textarea rows="2" cols="80" id="plan-2-pm"></textarea> 
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-2-pm">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">3 PM</div>
-            <div class="col-sm-10 plan-slot color-3-pm">
+            <div class="col-sm-10 plan-slot color-3-pm" value="15">
                 <textarea rows="2" cols="80" id="plan-3-pm"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-3-pm">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot">4 PM</div>
-            <div class="col-sm-10 plan-slot color-4-pm">
+            <div class="col-sm-10 plan-slot color-4-pm" value="16">
                 <textarea rows="2" cols="80" id="plan-4-pm"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-4-pm">⚿</div>
         </div>
         <div class="row row-height">
             <div class="col-sm-1 timeslot-bottom">5 PM</div>
-            <div class="col-sm-10 plan-slot color-5-pm">
+            <div class="col-sm-10 plan-slot color-5-pm" value="17">
                 <textarea rows="2" cols="80" id="plan-5-pm"></textarea>
             </div>
             <div class="col-sm-1 lock-slot bg-success rounded-right" id="lock-5-pm">⚿</div>
@@ -188,15 +189,30 @@
             localStorage.setItem("selector-5-pm", selector);
         });
 
-        // use of moment.js to assign colors to fields based on time.
+        // use of moment.js to assign colors to fields based on the set hour
 
-        /* To Do:
-            - Use moment.js to color-code the plan-slots according to the current time (grey for done, red for current, green for upcoming).
-                - In order to do this, I imagine we create a variable for the current time (let now = moment();), and then assign variables to set dates of 9:00 AM, 10:00 AM etc, for the same day
-                - We would have to have some kind of (constant?) comparison that will change the color of the plan-slots based on the value of 'now'.
-                - we can set hour equal to a number from 0-23
-        */
+        $(document).ready(function() {
+            let headerTime = moment().format('MMMM Do YYYY, h:mm a');
+            $("#header-time").text(`It is currently ${headerTime}.`);
 
+
+            // set the time as the current hour. We then compare this to the hour value assigned in the html to determine if the time is past, present, or future
+
+            let allTimes = $(".plan-slot");
+
+            for (let i = 0; i < allTimes.length; i++) {
+                let now = moment().hours();
+                let timeHour = $(allTimes[i]).attr('value');
+
+                if (timeHour > now) {
+                    $(allTimes[i]).attr("class", "future");
+                } else if (timeHour < now) {
+                    $(allTimes[i]).attr("class", "past");
+                } else {
+                    $(allTimes[i]).attr("class", "present");
+                }
+            }
+        });
 
     </script>
 </body>
