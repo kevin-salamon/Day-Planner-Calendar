@@ -1,3 +1,14 @@
+textarea {
+    background-color: lightgrey;
+    width: 100%;
+    position: relative;
+    top: 10%;
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+}
+
 .timeslot {
     font-size: 20px;
     border-top: 2px solid black;
@@ -33,6 +44,9 @@
 .lock-slot {
     border-top: 0.5px ridge white;
     border-bottom: 0.5px ridge white;
+    color: white;
+    font-size: 44px;
+    text-align: center;
 }
 
 .row-height {
@@ -41,4 +55,13 @@
 
 .text-9-am {
     background-color: lightgrey;
+}
+
+.lock-slot:hover {
+    color: #b3f0ff;
+    font-size: 45px;
+}
+
+.lock-slot:active {
+    color: black;
 }
